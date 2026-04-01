@@ -4,8 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Monte propostas profissionais em 2 minutos, envie pelo WhatsApp e saiba quando o cliente abriu. 5 propostas grátis todo mês, sem cartão de crédito." />
+    <meta property="og:title" content="propoz — propostas que fecham negócios" />
+    <meta property="og:description" content="Monte propostas profissionais em 2 minutos, envie pelo WhatsApp e saiba quando o cliente abriu. Grátis para começar." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>propoz — propostas que fecham negócios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -769,6 +775,29 @@
 
         .feature.wide {
             grid-column: 1 / -1;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature-wide-col {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .section-title--lg {
+            font-size: clamp(36px, 5vw, 56px) !important;
+        }
+
+        .proposal-mini-icon-wrap {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: rgba(255,255,255,.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .feature-icon {
@@ -1132,6 +1161,212 @@
             transform: translateY(0);
         }
 
+        /* ── HAMBURGER ── */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 6px;
+            border-radius: 8px;
+            transition: background .2s;
+        }
+
+        .nav-hamburger:hover {
+            background: rgba(255,255,255,.06);
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── MOBILE DRAWER ── */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            background: rgba(13,22,38,.97);
+            backdrop-filter: blur(16px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+            display: none;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .mobile-menu a:hover { color: var(--blue-lt); }
+
+        .mobile-cta {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 36px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: background .2s, transform .15s;
+        }
+
+        .mobile-cta:hover {
+            background: var(--blue-dk);
+            transform: translateY(-1px);
+        }
+
+        /* ── MODAL SIGNUP ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,.65);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: #111827;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            animation: fadeUp .4s cubic-bezier(.22,.68,0,1.2) both;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,.06);
+            border: none;
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, color .2s;
+        }
+
+        .modal-close:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(26,86,219,.15);
+            border: 1px solid rgba(26,86,219,.3);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--blue-lt);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .modal-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue-lt);
+        }
+
+        .modal-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 6px;
+        }
+
+        .modal-sub {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 13px 16px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            margin-bottom: 10px;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .modal-input::placeholder { color: var(--muted); }
+        .modal-input:focus { border-color: rgba(26,86,219,.5); }
+
+        .modal-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s, transform .15s;
+            margin-top: 4px;
+        }
+
+        .modal-submit:hover { background: var(--blue-dk); transform: translateY(-1px); }
+
+        .modal-note {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* ── UTILITIES ── */
+        .section--no-top { padding-top: 0 !important; }
+
         @media (max-width: 768px) {
             nav {
                 padding: 16px 20px;
@@ -1139,6 +1374,14 @@
 
             .nav-links {
                 display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
             }
 
             .features-grid {
@@ -1166,6 +1409,10 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .modal-box {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
@@ -1176,12 +1423,19 @@
     <nav id="nav">
         <a href="#" class="nav-logo">
             <div class="nav-icon">
-                <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
-                    <rect x="8" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.2)" />
-                    <rect x="16" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.3)" />
-                    <rect x="24" y="12" width="30" height="38" rx="6" fill="white" />
-                    <line x1="30" y1="26" x2="48" y2="26" stroke="#1A56DB" stroke-width="4" stroke-linecap="round" />
-                    <line x1="30" y1="36" x2="42" y2="36" stroke="#1A56DB" stroke-width="4" stroke-linecap="round" />
+                <svg width="20" height="20" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
+                    <defs>
+                        <clipPath id="nl-bot"><polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23"/></clipPath>
+                        <clipPath id="nl-top"><polygon points="20,6 48,6 48,23 41,23 20,29 20,6"/></clipPath>
+                        <clipPath id="nl-lin"><polygon points="20,29 48,23 48,44 20,44"/></clipPath>
+                    </defs>
+                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)"/>
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#nl-bot)"/>
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#nl-top)"/>
+                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#nl-lin)"/>
+                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#nl-lin)"/>
+                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB"/>
                 </svg>
             </div>
             <span class="nav-wordmark">propo<span>z</span></span>
@@ -1191,8 +1445,19 @@
             <a href="#funcionalidades">Funcionalidades</a>
             <a href="#precos">Preços</a>
         </div>
-        <button class="nav-cta">Começar grátis</button>
+        <button class="nav-cta" id="nav-cta" onclick="openModal()" aria-label="Criar conta grátis">Começar grátis</button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- ── MOBILE MENU ── -->
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#precos">Preços</a>
+        <button class="mobile-cta" onclick="openModal()" aria-label="Criar conta grátis">Criar conta grátis</button>
+    </div>
 
     <!-- ── HERO ── -->
     <div class="hero">
@@ -1213,14 +1478,14 @@
         </p>
 
         <div class="hero-actions anim-fade-up d3">
-            <button class="btn-primary-lg">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+            <button class="btn-primary-lg" onclick="openModal()" aria-label="Criar conta grátis">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true" focusable="false">
                     <line x1="12" y1="5" x2="12" y2="19" />
                     <line x1="5" y1="12" x2="19" y2="12" />
                 </svg>
                 Criar conta grátis
             </button>
-            <button class="btn-ghost-lg">Ver como funciona</button>
+            <button class="btn-ghost-lg" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})" aria-label="Ver como funciona">Ver como funciona</button>
         </div>
 
         <p class="hero-trust anim-fade-up d4">
@@ -1270,14 +1535,19 @@
                     <div class="ph-header-top">
                         <div class="ph-logo-row">
                             <div class="ph-logo-icon">
-                                <svg width="14" height="14" viewBox="0 0 64 64" fill="none">
-                                    <rect x="8" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.2)" />
-                                    <rect x="16" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.25)" />
-                                    <rect x="24" y="12" width="30" height="38" rx="6" fill="white" />
-                                    <line x1="30" y1="26" x2="48" y2="26" stroke="#1A56DB" stroke-width="5"
-                                        stroke-linecap="round" />
-                                    <line x1="30" y1="36" x2="42" y2="36" stroke="#1A56DB" stroke-width="5"
-                                        stroke-linecap="round" />
+                                <svg width="14" height="14" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
+                                    <defs>
+                                        <clipPath id="ph-bot"><polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23"/></clipPath>
+                                        <clipPath id="ph-top"><polygon points="20,6 48,6 48,23 41,23 20,29 20,6"/></clipPath>
+                                        <clipPath id="ph-lin"><polygon points="20,29 48,23 48,44 20,44"/></clipPath>
+                                    </defs>
+                                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
+                                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)"/>
+                                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ph-bot)"/>
+                                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ph-top)"/>
+                                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ph-lin)"/>
+                                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ph-lin)"/>
+                                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB"/>
                                 </svg>
                             </div>
                             <span class="ph-logo-text">propo<span>z</span></span>
@@ -1444,7 +1714,7 @@
     </section>
 
     <!-- ── FUNCIONALIDADES ── -->
-    <section id="funcionalidades" style="padding-top:0;">
+    <section id="funcionalidades" class="section--no-top">
         <div class="reveal">
             <div class="section-tag">Funcionalidades</div>
             <h2 class="section-title">Tudo que você precisa<br>para fechar mais</h2>
@@ -1501,8 +1771,8 @@
                     pra copiar e enviar no WhatsApp.</div>
             </div>
 
-            <div class="feature wide" style="display:flex;gap:40px;flex-wrap:wrap;">
-                <div style="flex:1;min-width:240px;">
+            <div class="feature wide">
+                <div class="feature-wide-col">
                     <div class="feature-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
                             <path
@@ -1513,11 +1783,10 @@
                     <div class="feature-desc">O cliente recebe uma página bonita, com seu nome, logo e os itens
                         detalhados. Transmite confiança antes mesmo de falar com você.</div>
                 </div>
-                <div style="flex:1;min-width:240px;">
+                <div class="feature-wide-col">
                     <div class="proposal-mini">
                         <div class="proposal-mini-head">
-                            <div
-                                style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <div class="proposal-mini-icon-wrap">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff"
                                     stroke-width="2">
                                     <circle cx="12" cy="12" r="3" />
@@ -1547,7 +1816,7 @@
     </section>
 
     <!-- ── DEPOIMENTOS ── -->
-    <section style="padding-top:0;">
+    <section class="section--no-top">
         <div class="reveal">
             <div class="section-tag">Depoimentos</div>
             <h2 class="section-title">Técnicos que fecham mais</h2>
@@ -1611,7 +1880,7 @@
     </section>
 
     <!-- ── PREÇOS ── -->
-    <section id="precos" style="padding-top:0;">
+    <section id="precos" class="section--no-top">
         <div class="reveal" style="text-align:center;">
             <div class="section-tag">Preços</div>
             <h2 class="section-title">Simples assim</h2>
@@ -1656,7 +1925,7 @@
                             <line x1="9" y1="3" x2="3" y2="9" />
                         </svg></div>Notificação em tempo real
                 </div>
-                <button class="plan-btn free-btn">Começar grátis</button>
+                <button class="plan-btn free-btn" onclick="openModal()" aria-label="Começar grátis">Começar grátis</button>
             </div>
 
             <div class="plan-card pro">
@@ -1700,7 +1969,7 @@
                             <polyline points="2,6 5,9 10,3" />
                         </svg></div>Follow-up sugerido
                 </div>
-                <button class="plan-btn pro-btn">Assinar Pro</button>
+                <button class="plan-btn pro-btn" onclick="openModal()" aria-label="Assinar Pro">Assinar Pro</button>
             </div>
 
         </div>
@@ -1709,14 +1978,13 @@
     <!-- ── CTA FINAL ── -->
     <div class="cta-section reveal">
         <div class="section-tag">Comece hoje</div>
-        <h2 class="section-title"
-            style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.1;">
+        <h2 class="section-title section-title--lg">
             Pronto para fechar<br>o próximo negócio?
         </h2>
         <p class="section-sub">Crie sua conta em 1 minuto. Sem cartão, sem burocracia.</p>
         <div class="hero-actions">
-            <button class="btn-primary-lg">Criar conta grátis</button>
-            <button class="btn-ghost-lg">Ver demonstração</button>
+            <button class="btn-primary-lg" onclick="openModal()" aria-label="Criar conta grátis">Criar conta grátis</button>
+            <button class="btn-ghost-lg" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})" aria-label="Ver demonstração">Ver demonstração</button>
         </div>
         <p class="hero-trust" style="margin-top:20px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
@@ -1731,12 +1999,19 @@
     <footer>
         <a href="#" class="nav-logo" style="text-decoration:none;">
             <div class="nav-icon" style="width:28px;height:28px;border-radius:8px;">
-                <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
-                    <rect x="8" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.2)" />
-                    <rect x="16" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.25)" />
-                    <rect x="24" y="12" width="30" height="38" rx="6" fill="white" />
-                    <line x1="30" y1="26" x2="48" y2="26" stroke="#1A56DB" stroke-width="5" stroke-linecap="round" />
-                    <line x1="30" y1="36" x2="42" y2="36" stroke="#1A56DB" stroke-width="5" stroke-linecap="round" />
+                <svg width="16" height="16" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
+                    <defs>
+                        <clipPath id="ft-bot"><polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23"/></clipPath>
+                        <clipPath id="ft-top"><polygon points="20,6 48,6 48,23 41,23 20,29 20,6"/></clipPath>
+                        <clipPath id="ft-lin"><polygon points="20,29 48,23 48,44 20,44"/></clipPath>
+                    </defs>
+                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)"/>
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ft-bot)"/>
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ft-top)"/>
+                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ft-lin)"/>
+                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ft-lin)"/>
+                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB"/>
                 </svg>
             </div>
             <span class="nav-wordmark" style="font-size:16px;">propo<span>z</span></span>
@@ -1749,12 +2024,29 @@
         </div>
     </footer>
 
+    <!-- ── MODAL SIGNUP ── -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
+            <div class="modal-badge"><div class="modal-badge-dot"></div>Acesso antecipado</div>
+            <div class="modal-title" id="modal-title">Comece grátis hoje</div>
+            <div class="modal-sub">5 propostas por mês, sem cartão de crédito.<br>Faça upgrade quando quiser fechar mais.</div>
+            <input class="modal-input" type="text" id="modal-name" placeholder="Seu nome completo" autocomplete="name" />
+            <input class="modal-input" type="email" id="modal-email" placeholder="Seu e-mail profissional" autocomplete="email" />
+            <input class="modal-input" type="tel" id="modal-phone" placeholder="WhatsApp (com DDD)" autocomplete="tel" />
+            <button class="modal-submit" id="modal-submit" onclick="submitModal()">Criar conta grátis →</button>
+            <div class="modal-note">✓ Grátis para sempre · Sem cartão · Cancele quando quiser</div>
+        </div>
+    </div>
+
     <script>
+        /* ── SCROLL NAV ── */
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 40);
         });
 
+        /* ── SCROLL REVEAL ── */
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -1765,6 +2057,73 @@
             });
         }, { threshold: 0.12 });
         reveals.forEach(r => observer.observe(r));
+
+        /* ── HAMBURGER ── */
+        const hamburger = document.getElementById('nav-hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ── MODAL ── */
+        function openModal() {
+            document.getElementById('modal-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => document.getElementById('modal-name').focus(), 100);
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function submitModal() {
+            const name = document.getElementById('modal-name').value.trim();
+            const email = document.getElementById('modal-email').value.trim();
+            if (!name || !email) {
+                document.getElementById('modal-name').focus();
+                return;
+            }
+            const btn = document.getElementById('modal-submit');
+            btn.textContent = '✓ Cadastro realizado!';
+            btn.style.background = '#16a34a';
+            btn.disabled = true;
+            setTimeout(() => {
+                closeModal();
+                btn.textContent = 'Criar conta grátis →';
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 2500);
+        }
+
+        /* ── ARIA-HIDDEN ON DECORATIVE SVGs ── */
+        document.querySelectorAll('svg').forEach(svg => {
+            if (!svg.querySelector('title') && !svg.getAttribute('aria-label')) {
+                svg.setAttribute('aria-hidden', 'true');
+                svg.setAttribute('focusable', 'false');
+            }
+        });
     </script>
 </body>
 
