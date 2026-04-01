@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>propoz — propostas que fecham negócios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --blue: #1A56DB;
+            --blue-lt: #93C5FD;
+            --blue-dk: #1344B0;
+            --navy: #0D1626;
+            --navy2: #111827;
+            --ink: #1E293B;
+            --slate: #475569;
+            --muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.08);
+            --green: #25D366;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy);
+            color: #fff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: .6;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes notif-in {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .anim-fade-up {
+            animation: fadeUp .7s cubic-bezier(.22, .68, 0, 1.2) both;
+        }
+
+        .anim-fade-up.d1 {
+            animation-delay: .1s;
+        }
+
+        .anim-fade-up.d2 {
+            animation-delay: .2s;
+        }
+
+        .anim-fade-up.d3 {
+            animation-delay: .35s;
+        }
+
+        .anim-fade-up.d4 {
+            animation-delay: .5s;
+        }
+
+        .anim-fade-up.d5 {
+            animation-delay: .65s;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 48px;
+            border-bottom: 1px solid transparent;
+            transition: background .3s, border-color .3s, backdrop-filter .3s;
+        }
+
+        nav.scrolled {
+            background: rgba(13, 22, 38, .85);
+            border-color: var(--border);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav-wordmark {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .nav-wordmark span {
+            color: var(--blue-lt);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: background .2s, transform .15s;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-dk);
+            transform: translateY(-1px);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(26, 86, 219, .35), transparent),
+                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(26, 86, 219, .12), transparent);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: .04;
+            background-image: linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(26, 86, 219, .15);
+            border: 1px solid rgba(26, 86, 219, .3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin-bottom: 32px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--blue-lt);
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue-lt);
+            position: relative;
+        }
+
+        .hero-badge-dot::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: var(--blue-lt);
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+
+        .hero-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(48px, 8vw, 88px);
+            font-weight: 800;
+            line-height: 1.02;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .hero-title .accent {
+            color: var(--blue-lt);
+            font-style: italic;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--muted);
+            font-weight: 400;
+            line-height: 1.65;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-lg {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background .2s, transform .15s;
+        }
+
+        .btn-primary-lg:hover {
+            background: var(--blue-dk);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost-lg {
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: border-color .2s, background .2s;
+        }
+
+        .btn-ghost-lg:hover {
+            border-color: rgba(255, 255, 255, .25);
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .hero-trust {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .hero-trust span {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ── PHONE MOCKUP ── */
+        .hero-phone-wrap {
+            margin-top: 72px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-phone {
+            width: 300px;
+            background: #fff;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .06);
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 22px;
+            background: #000;
+            border-radius: 11px;
+            z-index: 10;
+        }
+
+        .ph-header {
+            background: var(--blue);
+            padding: 52px 18px 18px;
+        }
+
+        .ph-header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .ph-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .ph-logo-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ph-logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -.6px;
+        }
+
+        .ph-logo-text span {
+            color: rgba(255, 255, 255, .65);
+        }
+
+        .ph-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .ph-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .ph-metric {
+            background: rgba(255, 255, 255, .12);
+            border-radius: 10px;
+            padding: 9px;
+        }
+
+        .ph-metric-val {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .ph-metric-lbl {
+            font-size: 9px;
+            color: rgba(255, 255, 255, .55);
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+
+        .ph-body {
+            padding: 14px;
+            background: #F8FAFC;
+        }
+
+        .ph-notif {
+            background: #FFF7ED;
+            border: 1px solid #FED7AA;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: notif-in .5s .8s both;
+        }
+
+        .ph-notif-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #EA580C;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ph-notif-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: #9a3412;
+            line-height: 1.4;
+        }
+
+        .ph-notif-sub {
+            font-size: 10px;
+            color: #c2410c;
+            margin-top: 1px;
+        }
+
+        .ph-new-btn {
+            background: var(--blue);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .ph-new-btn-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .ph-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 8px;
+        }
+
+        .ph-row {
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .ph-row-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1E293B;
+        }
+
+        .ph-row-sub {
+            font-size: 10px;
+            color: #94A3B8;
+            margin-top: 1px;
+        }
+
+        .ph-tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .ph-tag.blue {
+            background: #EFF6FF;
+            color: #1e3a8a;
+        }
+
+        .ph-tag.green {
+            background: #F0FDF4;
+            color: #166534;
+        }
+
+        .ph-tag.gray {
+            background: #F1F5F9;
+            color: #64748b;
+        }
+
+        /* float cards */
+        .float-card {
+            position: absolute;
+            background: #fff;
+            border-radius: 12px;
+            padding: 10px 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .3);
+            white-space: nowrap;
+        }
+
+        .float-card.left {
+            left: -120px;
+            top: 30%;
+            animation: float 5s 1s ease-in-out infinite;
+        }
+
+        .float-card.right {
+            right: -100px;
+            top: 55%;
+            animation: float 4s 0.5s ease-in-out infinite;
+        }
+
+        /* ── TICKER ── */
+        .ticker {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            background: rgba(255, 255, 255, .02);
+        }
+
+        .ticker-inner {
+            display: flex;
+            gap: 0;
+            width: max-content;
+            animation: ticker 20s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 32px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .ticker-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--blue);
+        }
+
+        /* ── SECTION ── */
+        section {
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(26, 86, 219, .15);
+            border: 1px solid rgba(26, 86, 219, .25);
+            color: var(--blue-lt);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(34px, 5vw, 52px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 18px;
+            color: var(--muted);
+            font-weight: 400;
+            line-height: 1.65;
+            max-width: 500px;
+        }
+
+        /* ── COMO FUNCIONA ── */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2px;
+            margin-top: 56px;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .step {
+            background: var(--navy2);
+            padding: 36px 32px;
+            position: relative;
+            transition: background .2s;
+        }
+
+        .step:hover {
+            background: #151f30;
+        }
+
+        .step-num {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 72px;
+            font-weight: 800;
+            color: rgba(26, 86, 219, .15);
+            line-height: 1;
+            margin-bottom: 16px;
+            letter-spacing: -3px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(26, 86, 219, .15);
+            border: 1px solid rgba(26, 86, 219, .25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* ── FEATURES ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-top: 56px;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .feature {
+            background: var(--navy2);
+            padding: 40px 36px;
+        }
+
+        .feature.highlight {
+            background: #0f1e38;
+            border: 1px solid rgba(26, 86, 219, .2);
+        }
+
+        .feature.wide {
+            grid-column: 1 / -1;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(26, 86, 219, .15);
+            border: 1px solid rgba(26, 86, 219, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .feature-visual {
+            margin-top: 24px;
+        }
+
+        /* mini notif demo */
+        .notif-demo {
+            background: rgba(26, 86, 219, .08);
+            border: 1px solid rgba(26, 86, 219, .15);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notif-icon-w {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: #EA580C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .notif-text-w {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .notif-sub-w {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* proposal mini preview */
+        .proposal-mini {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .proposal-mini-head {
+            background: var(--blue);
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .proposal-mini-body {
+            padding: 12px 14px;
+        }
+
+        .p-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .p-line:last-child {
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            padding-top: 8px;
+        }
+
+        /* ── PRICING ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 56px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .plan-card {
+            border-radius: 20px;
+            padding: 36px 32px;
+            position: relative;
+        }
+
+        .plan-card.free {
+            background: var(--navy2);
+            border: 1px solid var(--border);
+        }
+
+        .plan-card.pro {
+            background: var(--blue);
+        }
+
+        .plan-badge-top {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: .04em;
+        }
+
+        .plan-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .plan-card.pro .plan-name {
+            color: rgba(255, 255, 255, .7);
+        }
+
+        .plan-price {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 4px;
+        }
+
+        .plan-period {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .plan-card.pro .plan-period {
+            color: rgba(255, 255, 255, .65);
+        }
+
+        .plan-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--muted);
+            padding: 6px 0;
+        }
+
+        .plan-card.pro .plan-feature {
+            color: rgba(255, 255, 255, .85);
+        }
+
+        .plan-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(26, 86, 219, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .plan-card.pro .plan-check {
+            background: rgba(255, 255, 255, .2);
+        }
+
+        .plan-feature.off {
+            color: rgba(255, 255, 255, .2);
+        }
+
+        .plan-feature.off .plan-check {
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .plan-btn {
+            width: 100%;
+            margin-top: 28px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            border: none;
+            transition: transform .15s, opacity .2s;
+        }
+
+        .plan-btn:hover {
+            transform: translateY(-1px);
+            opacity: .9;
+        }
+
+        .plan-btn.free-btn {
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            border: 1px solid var(--border);
+        }
+
+        .plan-btn.pro-btn {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        /* ── SOCIAL PROOF ── */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 56px;
+        }
+
+        .testimonial {
+            background: var(--navy2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .85);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .t-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .t-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .t-role {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 16px;
+        }
+
+        .star {
+            width: 14px;
+            height: 14px;
+            background: #F59E0B;
+            border-radius: 2px;
+        }
+
+        /* ── CTA FINAL ── */
+        .cta-section {
+            text-align: center;
+            padding: 100px 24px 120px;
+            background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(26, 86, 219, .25), transparent);
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-section .section-title {
+            max-width: 700px;
+            margin: 0 auto 24px;
+        }
+
+        .cta-section .section-sub {
+            margin: 0 auto 40px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        footer .foot-copy {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        footer .foot-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        footer .foot-links a {
+            font-size: 13px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        footer .foot-links a:hover {
+            color: #fff;
+        }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .float-card {
+                display: none;
+            }
+
+            section {
+                padding: 64px 20px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 24px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAV ── -->
+    <nav id="nav">
+        <a href="#" class="nav-logo">
+            <div class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
+                    <rect x="8" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.2)" />
+                    <rect x="16" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.3)" />
+                    <rect x="24" y="12" width="30" height="38" rx="6" fill="white" />
+                    <line x1="30" y1="26" x2="48" y2="26" stroke="#1A56DB" stroke-width="4" stroke-linecap="round" />
+                    <line x1="30" y1="36" x2="42" y2="36" stroke="#1A56DB" stroke-width="4" stroke-linecap="round" />
+                </svg>
+            </div>
+            <span class="nav-wordmark">propo<span>z</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#funcionalidades">Funcionalidades</a>
+            <a href="#precos">Preços</a>
+        </div>
+        <button class="nav-cta">Começar grátis</button>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+
+        <div class="hero-badge anim-fade-up">
+            <div class="hero-badge-dot"></div>
+            Novo · Propostas com rastreamento em tempo real
+        </div>
+
+        <h1 class="hero-title anim-fade-up d1">
+            Feche mais<br><span class="accent">serviços</span>,<br>em menos tempo
+        </h1>
+
+        <p class="hero-sub anim-fade-up d2">
+            Monte uma proposta profissional em 2 minutos, envie pelo WhatsApp e saiba na hora que o cliente abriu.
+        </p>
+
+        <div class="hero-actions anim-fade-up d3">
+            <button class="btn-primary-lg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Criar conta grátis
+            </button>
+            <button class="btn-ghost-lg">Ver como funciona</button>
+        </div>
+
+        <p class="hero-trust anim-fade-up d4">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#25D366" stroke-width="2">
+                <circle cx="8" cy="8" r="7" />
+                <polyline points="5,8 7,10 11,6" />
+            </svg>
+            <span>5 propostas grátis</span> todo mês · sem cartão de crédito
+        </p>
+
+        <div class="hero-phone-wrap anim-fade-up d5">
+
+            <div class="float-card left">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <div
+                        style="width:28px;height:28px;border-radius:8px;background:#EA580C;display:flex;align-items:center;justify-content:center;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div style="font-size:12px;font-weight:700;color:#1E293B;">Proposta aberta!</div>
+                        <div style="font-size:11px;color:#94A3B8;">há 2 min · R$ 1.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="float-card right">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <div
+                        style="width:28px;height:28px;border-radius:8px;background:#16A34A;display:flex;align-items:center;justify-content:center;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                            <polyline points="20,6 9,17 4,12" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div style="font-size:12px;font-weight:700;color:#1E293B;">Proposta aprovada!</div>
+                        <div style="font-size:11px;color:#94A3B8;">Contab. BM · R$ 2.400</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-phone">
+                <div class="phone-notch"></div>
+                <div class="ph-header">
+                    <div class="ph-header-top">
+                        <div class="ph-logo-row">
+                            <div class="ph-logo-icon">
+                                <svg width="14" height="14" viewBox="0 0 64 64" fill="none">
+                                    <rect x="8" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.2)" />
+                                    <rect x="16" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.25)" />
+                                    <rect x="24" y="12" width="30" height="38" rx="6" fill="white" />
+                                    <line x1="30" y1="26" x2="48" y2="26" stroke="#1A56DB" stroke-width="5"
+                                        stroke-linecap="round" />
+                                    <line x1="30" y1="36" x2="42" y2="36" stroke="#1A56DB" stroke-width="5"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <span class="ph-logo-text">propo<span>z</span></span>
+                        </div>
+                        <div class="ph-avatar">KE</div>
+                    </div>
+                    <div class="ph-metrics">
+                        <div class="ph-metric">
+                            <div class="ph-metric-val">3</div>
+                            <div class="ph-metric-lbl">enviadas no mês</div>
+                        </div>
+                        <div class="ph-metric">
+                            <div class="ph-metric-val">1</div>
+                            <div class="ph-metric-lbl">aguardando</div>
+                        </div>
+                        <div class="ph-metric">
+                            <div class="ph-metric-val">R$2,4k</div>
+                            <div class="ph-metric-lbl">fechado</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ph-body">
+                    <div class="ph-notif">
+                        <div class="ph-notif-dot">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="ph-notif-text">Mercado São João abriu a proposta</div>
+                            <div class="ph-notif-sub">há 12 min · R$ 1.000 · Hora de agir!</div>
+                        </div>
+                    </div>
+                    <div class="ph-new-btn">
+                        <div class="ph-new-btn-text">+ Nova proposta</div>
+                    </div>
+                    <div class="ph-label">Recentes</div>
+                    <div class="ph-row">
+                        <div>
+                            <div class="ph-row-name">Mercado São João</div>
+                            <div class="ph-row-sub">CFTV · R$ 1.000</div>
+                        </div>
+                        <span class="ph-tag blue">Visualizada</span>
+                    </div>
+                    <div class="ph-row">
+                        <div>
+                            <div class="ph-row-name">Contabilidade BM</div>
+                            <div class="ph-row-sub">Redes · R$ 2.400</div>
+                        </div>
+                        <span class="ph-tag green">Aprovada</span>
+                    </div>
+                    <div class="ph-row">
+                        <div>
+                            <div class="ph-row-name">Padaria do Zé</div>
+                            <div class="ph-row-sub">CFTV · R$ 650</div>
+                        </div>
+                        <span class="ph-tag gray">Enviada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── TICKER ── -->
+    <div class="ticker">
+        <div class="ticker-inner">
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Proposta enviada em 2 minutos
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Rastreamento de abertura em tempo real
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Envio direto pelo WhatsApp
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Catálogo de serviços personalizado
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Sugestão de follow-up automática
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>5 propostas grátis todo mês
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Proposta enviada em 2 minutos
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Rastreamento de abertura em tempo real
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Envio direto pelo WhatsApp
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Catálogo de serviços personalizado
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>Sugestão de follow-up automática
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-dot"></div>5 propostas grátis todo mês
+            </div>
+        </div>
+    </div>
+
+    <!-- ── COMO FUNCIONA ── -->
+    <section id="como-funciona">
+        <div class="reveal">
+            <div class="section-tag">Como funciona</div>
+            <h2 class="section-title">Da visita ao fechamento<br>em 4 passos</h2>
+            <p class="section-sub">Sem planilha, sem PDF, sem demora. Do orçamento à proposta assinada em minutos.</p>
+        </div>
+
+        <div class="steps reveal">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <path d="M8 21h8M12 17v4" />
+                    </svg>
+                </div>
+                <div class="step-title">Monte o catálogo</div>
+                <div class="step-desc">Cadastre seus serviços uma vez — câmeras, DVR, cabeamento, APs. O propoz sugere
+                    baseado no seu nicho.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <path
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <div class="step-title">Selecione e envie</div>
+                <div class="step-desc">Escolha o cliente, marque os itens, ajuste as quantidades. A proposta fica pronta
+                    em menos de 2 minutos.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                </div>
+                <div class="step-title">Saiba que abriu</div>
+                <div class="step-desc">Você recebe uma notificação assim que o cliente abre a proposta. Hora certa de
+                    entrar em contato.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <polyline points="20,6 9,17 4,12" />
+                    </svg>
+                </div>
+                <div class="step-title">Feche o negócio</div>
+                <div class="step-desc">Com o follow-up certo na hora certa, sua taxa de fechamento dispara. O propoz até
+                    sugere o que falar.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FUNCIONALIDADES ── -->
+    <section id="funcionalidades" style="padding-top:0;">
+        <div class="reveal">
+            <div class="section-tag">Funcionalidades</div>
+            <h2 class="section-title">Tudo que você precisa<br>para fechar mais</h2>
+        </div>
+
+        <div class="features-grid reveal">
+
+            <div class="feature highlight">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                </div>
+                <div class="feature-title">Rastreamento em tempo real</div>
+                <div class="feature-desc">Saiba exatamente quando o cliente abriu sua proposta. Cada segundo de vantagem
+                    conta na hora de fechar.</div>
+                <div class="feature-visual">
+                    <div class="notif-demo">
+                        <div class="notif-icon-w">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="notif-text-w">Mercado São João abriu sua proposta</div>
+                            <div class="notif-sub-w">há 2 minutos · R$ 1.000 · Entre em contato agora</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <path d="M8 21h8M12 17v4" />
+                    </svg>
+                </div>
+                <div class="feature-title">Catálogo inteligente</div>
+                <div class="feature-desc">Cadastre seus serviços uma vez. O propoz carrega automaticamente baseado no
+                    seu nicho — CFTV, redes, automação.</div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                    </svg>
+                </div>
+                <div class="feature-title">Follow-up sugerido</div>
+                <div class="feature-desc">Quando o cliente abre, o propoz sugere exatamente o que falar. Mensagem pronta
+                    pra copiar e enviar no WhatsApp.</div>
+            </div>
+
+            <div class="feature wide" style="display:flex;gap:40px;flex-wrap:wrap;">
+                <div style="flex:1;min-width:240px;">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2">
+                            <path
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <div class="feature-title">Proposta profissional</div>
+                    <div class="feature-desc">O cliente recebe uma página bonita, com seu nome, logo e os itens
+                        detalhados. Transmite confiança antes mesmo de falar com você.</div>
+                </div>
+                <div style="flex:1;min-width:240px;">
+                    <div class="proposal-mini">
+                        <div class="proposal-mini-head">
+                            <div
+                                style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div style="font-size:13px;font-weight:600;color:#fff;">Node Tech</div>
+                                <div style="font-size:10px;color:rgba(255,255,255,.6);">Proposta para Mercado São João
+                                </div>
+                            </div>
+                        </div>
+                        <div class="proposal-mini-body">
+                            <div class="p-line"><span style="color:var(--muted);">Câmera IP ext. ×4</span><span
+                                    style="color:#fff;">R$ 480</span></div>
+                            <div class="p-line"><span style="color:var(--muted);">DVR 8 canais</span><span
+                                    style="color:#fff;">R$ 280</span></div>
+                            <div class="p-line"><span style="color:var(--muted);">Cabeamento 30m</span><span
+                                    style="color:#fff;">R$ 240</span></div>
+                            <div class="p-line"><span style="color:#fff;">Total</span><span
+                                    style="color:var(--blue-lt);">R$ 1.000</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── DEPOIMENTOS ── -->
+    <section style="padding-top:0;">
+        <div class="reveal">
+            <div class="section-tag">Depoimentos</div>
+            <h2 class="section-title">Técnicos que fecham mais</h2>
+        </div>
+        <div class="testimonials reveal">
+            <div class="testimonial">
+                <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <div class="testimonial-text">"Antes eu mandava orçamento por WhatsApp mesmo, uma bagunça. Agora mando o
+                    link e já sei na hora que o cliente abriu. Fechei 4 dos últimos 5."</div>
+                <div class="testimonial-author">
+                    <div class="t-avatar">RS</div>
+                    <div>
+                        <div class="t-name">Rafael S.</div>
+                        <div class="t-role">Técnico CFTV · São Paulo</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <div class="testimonial-text">"O cliente me disse que escolheu a minha empresa porque a proposta parecia
+                    mais profissional. Nunca imaginei que isso faria tanta diferença."</div>
+                <div class="testimonial-author">
+                    <div class="t-avatar" style="background:#0F6E56;">FM</div>
+                    <div>
+                        <div class="t-name">Fábio M.</div>
+                        <div class="t-role">Redes e infraestrutura · Curitiba</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <div class="testimonial-text">"Economizo pelo menos 1 hora por dia que gastava fazendo proposta no Word.
+                    Agora faço em 2 minutos e ainda sei quando o cliente leu."</div>
+                <div class="testimonial-author">
+                    <div class="t-avatar" style="background:#7C3AED;">CL</div>
+                    <div>
+                        <div class="t-name">Carlos L.</div>
+                        <div class="t-role">Automação residencial · BH</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PREÇOS ── -->
+    <section id="precos" style="padding-top:0;">
+        <div class="reveal" style="text-align:center;">
+            <div class="section-tag">Preços</div>
+            <h2 class="section-title">Simples assim</h2>
+            <p class="section-sub" style="margin:0 auto;">Comece grátis. Faça upgrade quando quiser fechar mais.</p>
+        </div>
+
+        <div class="pricing-grid reveal">
+
+            <div class="plan-card free">
+                <div class="plan-name">Free</div>
+                <div class="plan-price">R$ 0</div>
+                <div class="plan-period">para sempre</div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#93C5FD"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>5 propostas por mês
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#93C5FD"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Catálogo de serviços
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#93C5FD"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Envio por WhatsApp
+                </div>
+                <div class="plan-feature off">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"
+                            stroke="rgba(255,255,255,.2)" stroke-width="2">
+                            <line x1="3" y1="3" x2="9" y2="9" />
+                            <line x1="9" y1="3" x2="3" y2="9" />
+                        </svg></div>Rastreamento de abertura
+                </div>
+                <div class="plan-feature off">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"
+                            stroke="rgba(255,255,255,.2)" stroke-width="2">
+                            <line x1="3" y1="3" x2="9" y2="9" />
+                            <line x1="9" y1="3" x2="3" y2="9" />
+                        </svg></div>Notificação em tempo real
+                </div>
+                <button class="plan-btn free-btn">Começar grátis</button>
+            </div>
+
+            <div class="plan-card pro">
+                <div class="plan-badge-top">⚡ Mais popular</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">R$ 29</div>
+                <div class="plan-period">/mês · cancele quando quiser</div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Propostas ilimitadas
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Catálogo de serviços
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Envio por WhatsApp
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Rastreamento de abertura
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Notificação em tempo real
+                </div>
+                <div class="plan-feature">
+                    <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
+                            stroke-width="2">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg></div>Follow-up sugerido
+                </div>
+                <button class="plan-btn pro-btn">Assinar Pro</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── CTA FINAL ── -->
+    <div class="cta-section reveal">
+        <div class="section-tag">Comece hoje</div>
+        <h2 class="section-title"
+            style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.1;">
+            Pronto para fechar<br>o próximo negócio?
+        </h2>
+        <p class="section-sub">Crie sua conta em 1 minuto. Sem cartão, sem burocracia.</p>
+        <div class="hero-actions">
+            <button class="btn-primary-lg">Criar conta grátis</button>
+            <button class="btn-ghost-lg">Ver demonstração</button>
+        </div>
+        <p class="hero-trust" style="margin-top:20px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
+            </svg>
+            Junte-se a centenas de técnicos que já fecham mais com o <span>propoz</span>
+        </p>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <a href="#" class="nav-logo" style="text-decoration:none;">
+            <div class="nav-icon" style="width:28px;height:28px;border-radius:8px;">
+                <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
+                    <rect x="8" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.2)" />
+                    <rect x="16" y="12" width="30" height="38" rx="6" fill="rgba(255,255,255,0.25)" />
+                    <rect x="24" y="12" width="30" height="38" rx="6" fill="white" />
+                    <line x1="30" y1="26" x2="48" y2="26" stroke="#1A56DB" stroke-width="5" stroke-linecap="round" />
+                    <line x1="30" y1="36" x2="42" y2="36" stroke="#1A56DB" stroke-width="5" stroke-linecap="round" />
+                </svg>
+            </div>
+            <span class="nav-wordmark" style="font-size:16px;">propo<span>z</span></span>
+        </a>
+        <span class="foot-copy">© 2026 propoz. Feito para técnicos brasileiros.</span>
+        <div class="foot-links">
+            <a href="#">Termos</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Contato</a>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => observer.observe(r));
+    </script>
+</body>
+
+</html>
