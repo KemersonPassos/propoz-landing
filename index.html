@@ -1425,7 +1425,7 @@
 
     <!-- ── NAV ── -->
     <nav id="nav">
-        <a href="#" class="nav-logo">
+        <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="nav-logo">
             <div class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
                     <defs>
@@ -1586,7 +1586,7 @@
                             <div class="ph-notif-sub">há 12 min · R$ 1.000 · Hora de agir!</div>
                         </div>
                     </div>
-                    <div class="ph-new-btn">
+                    <div class="ph-new-btn" onclick="openModal()" style="cursor:pointer;" aria-label="Nova proposta">
                         <div class="ph-new-btn-text">+ Nova proposta</div>
                     </div>
                     <div class="ph-label">Recentes</div>
@@ -2001,7 +2001,7 @@
 
     <!-- ── FOOTER ── -->
     <footer>
-        <a href="#" class="nav-logo" style="text-decoration:none;">
+        <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="nav-logo" style="text-decoration:none;">
             <div class="nav-icon" style="width:28px;height:28px;border-radius:8px;">
                 <svg width="16" height="16" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
                     <defs>
@@ -2022,9 +2022,9 @@
         </a>
         <span class="foot-copy">© 2026 propoz. Feito para técnicos brasileiros.</span>
         <div class="foot-links">
-            <a href="#">Termos</a>
-            <a href="#">Privacidade</a>
-            <a href="#">Contato</a>
+            <a href="#" onclick="return false;" tabindex="-1">Termos</a>
+            <a href="#" onclick="return false;" tabindex="-1">Privacidade</a>
+            <a href="#" onclick="return false;" tabindex="-1">Contato</a>
         </div>
     </footer>
 
@@ -2035,10 +2035,12 @@
             <div class="modal-badge"><div class="modal-badge-dot"></div>Acesso antecipado</div>
             <div class="modal-title" id="modal-title">Comece grátis hoje</div>
             <div class="modal-sub">5 propostas por mês, sem cartão de crédito.<br>Faça upgrade quando quiser fechar mais.</div>
-            <input class="modal-input" type="text" id="modal-name" placeholder="Seu nome completo" autocomplete="name" />
-            <input class="modal-input" type="email" id="modal-email" placeholder="Seu e-mail profissional" autocomplete="email" />
-            <input class="modal-input" type="tel" id="modal-phone" placeholder="WhatsApp (com DDD)" autocomplete="tel" />
-            <button class="modal-submit" id="modal-submit" onclick="submitModal()">Criar conta grátis →</button>
+            <form id="signup-form" onsubmit="submitModal(event)">
+                <input class="modal-input" type="text" id="modal-name" placeholder="Seu nome completo" autocomplete="name" aria-label="Nome completo" required />
+                <input class="modal-input" type="email" id="modal-email" placeholder="Seu e-mail profissional" autocomplete="email" aria-label="E-mail profissional" required />
+                <input class="modal-input" type="tel" id="modal-phone" placeholder="WhatsApp (com DDD)" autocomplete="tel" aria-label="WhatsApp com DDD" required />
+                <button type="submit" class="modal-submit" id="modal-submit">Criar conta grátis →</button>
+            </form>
             <div class="modal-note">✓ Grátis para sempre · Sem cartão · Cancele quando quiser</div>
         </div>
     </div>
@@ -2102,23 +2104,53 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        function submitModal() {
+        async function submitModal(event) {
+            event.preventDefault(); // Impede o "recarregar" padrão do form
+            const form = event.target;
             const name = document.getElementById('modal-name').value.trim();
             const email = document.getElementById('modal-email').value.trim();
-            if (!name || !email) {
-                document.getElementById('modal-name').focus();
-                return;
-            }
+            const phone = document.getElementById('modal-phone').value.trim();
+            
             const btn = document.getElementById('modal-submit');
-            btn.textContent = '✓ Cadastro realizado!';
-            btn.style.background = '#16a34a';
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Enviando...';
+            btn.style.opacity = '0.8';
             btn.disabled = true;
-            setTimeout(() => {
-                closeModal();
-                btn.textContent = 'Criar conta grátis →';
-                btn.style.background = '';
-                btn.disabled = false;
-            }, 2500);
+
+            try {
+                // TODO: Para integrar de verdade no Vercel estático, descomente aqui e coloque seu webhook
+                // await fetch('https://formspree.io/f/seu-id', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ name, email, phone })
+                // });
+                
+                // Simulação de Loading real da rede:
+                await new Promise(resolve => setTimeout(resolve, 800));
+
+                btn.textContent = '✓ Cadastro realizado!';
+                btn.style.background = 'var(--green)';
+                btn.style.opacity = '1';
+                
+                setTimeout(() => {
+                    closeModal();
+                    form.reset(); // Limpa os campos
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 2000);
+
+            } catch (error) {
+                btn.textContent = 'Erro ao enviar. Tente novamente.';
+                btn.style.background = '#dc2626';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                }, 3000);
+            }
         }
 
         /* ── ARIA-HIDDEN ON DECORATIVE SVGs ── */
