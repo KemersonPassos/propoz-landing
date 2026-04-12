@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="Monte propostas profissionais em 2 minutos, envie pelo WhatsApp e saiba quando o cliente abriu. 5 propostas grátis todo mês, sem cartão de crédito." />
+    <meta name="description"
+        content="Monte propostas profissionais em 2 minutos, envie pelo WhatsApp e saiba quando o cliente abriu. 5 propostas grátis todo mês, sem cartão de crédito." />
     <meta property="og:title" content="propoz — propostas que fecham negócios" />
-    <meta property="og:description" content="Monte propostas profissionais em 2 minutos, envie pelo WhatsApp e saiba quando o cliente abriu. Grátis para começar." />
+    <meta property="og:description"
+        content="Monte propostas profissionais em 2 minutos, envie pelo WhatsApp e saiba quando o cliente abriu. Grátis para começar." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://propoz.vercel.app/" />
     <meta property="og:image" content="https://propoz.vercel.app/favicon.svg" />
@@ -797,7 +799,7 @@
             width: 30px;
             height: 30px;
             border-radius: 8px;
-            background: rgba(255,255,255,.2);
+            background: rgba(255, 255, 255, .2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1179,7 +1181,7 @@
         }
 
         .nav-hamburger:hover {
-            background: rgba(255,255,255,.06);
+            background: rgba(255, 255, 255, .06);
         }
 
         .nav-hamburger span {
@@ -1191,16 +1193,24 @@
             transition: transform .3s, opacity .3s;
         }
 
-        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
 
         /* ── MOBILE DRAWER ── */
         .mobile-menu {
             position: fixed;
             inset: 0;
             z-index: 99;
-            background: rgba(13,22,38,.97);
+            background: rgba(13, 22, 38, .97);
             backdrop-filter: blur(16px);
             flex-direction: column;
             align-items: center;
@@ -1225,7 +1235,9 @@
             transition: color .2s;
         }
 
-        .mobile-menu a:hover { color: var(--blue-lt); }
+        .mobile-menu a:hover {
+            color: var(--blue-lt);
+        }
 
         .mobile-cta {
             background: var(--blue);
@@ -1251,14 +1263,16 @@
             position: fixed;
             inset: 0;
             z-index: 200;
-            background: rgba(0,0,0,.65);
+            background: rgba(0, 0, 0, .65);
             backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
             padding: 24px;
         }
 
-        .modal-overlay.open { display: flex; }
+        .modal-overlay.open {
+            display: flex;
+        }
 
         .modal-box {
             background: #111827;
@@ -1268,14 +1282,14 @@
             max-width: 420px;
             width: 100%;
             position: relative;
-            animation: fadeUp .4s cubic-bezier(.22,.68,0,1.2) both;
+            animation: fadeUp .4s cubic-bezier(.22, .68, 0, 1.2) both;
         }
 
         .modal-close {
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(255,255,255,.06);
+            background: rgba(255, 255, 255, .06);
             border: none;
             border-radius: 8px;
             width: 32px;
@@ -1289,14 +1303,17 @@
             transition: background .2s, color .2s;
         }
 
-        .modal-close:hover { background: rgba(255,255,255,.12); color: #fff; }
+        .modal-close:hover {
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+        }
 
         .modal-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(26,86,219,.15);
-            border: 1px solid rgba(26,86,219,.3);
+            background: rgba(26, 86, 219, .15);
+            border: 1px solid rgba(26, 86, 219, .3);
             border-radius: 20px;
             padding: 4px 12px;
             font-size: 12px;
@@ -1330,7 +1347,7 @@
         .modal-input {
             width: 100%;
             padding: 13px 16px;
-            background: rgba(255,255,255,.06);
+            background: rgba(255, 255, 255, .06);
             border: 1px solid var(--border);
             border-radius: 12px;
             color: #fff;
@@ -1341,8 +1358,13 @@
             transition: border-color .2s;
         }
 
-        .modal-input::placeholder { color: var(--muted); }
-        .modal-input:focus { border-color: rgba(26,86,219,.5); }
+        .modal-input::placeholder {
+            color: var(--muted);
+        }
+
+        .modal-input:focus {
+            border-color: rgba(26, 86, 219, .5);
+        }
 
         .modal-submit {
             width: 100%;
@@ -1359,7 +1381,10 @@
             margin-top: 4px;
         }
 
-        .modal-submit:hover { background: var(--blue-dk); transform: translateY(-1px); }
+        .modal-submit:hover {
+            background: var(--blue-dk);
+            transform: translateY(-1px);
+        }
 
         .modal-note {
             font-size: 12px;
@@ -1369,7 +1394,9 @@
         }
 
         /* ── UTILITIES ── */
-        .section--no-top { padding-top: 0 !important; }
+        .section--no-top {
+            padding-top: 0 !important;
+        }
 
         @media (max-width: 768px) {
             nav {
@@ -1429,17 +1456,27 @@
             <div class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
                     <defs>
-                        <clipPath id="nl-bot"><polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23"/></clipPath>
-                        <clipPath id="nl-top"><polygon points="20,6 48,6 48,23 41,23 20,29 20,6"/></clipPath>
-                        <clipPath id="nl-lin"><polygon points="20,29 48,23 48,44 20,44"/></clipPath>
+                        <clipPath id="nl-bot">
+                            <polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23" />
+                        </clipPath>
+                        <clipPath id="nl-top">
+                            <polygon points="20,6 48,6 48,23 41,23 20,29 20,6" />
+                        </clipPath>
+                        <clipPath id="nl-lin">
+                            <polygon points="20,29 48,23 48,44 20,44" />
+                        </clipPath>
                     </defs>
-                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
-                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)"/>
-                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#nl-bot)"/>
-                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#nl-top)"/>
-                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#nl-lin)"/>
-                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#nl-lin)"/>
-                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB"/>
+                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)" />
+                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)" />
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)"
+                        clip-path="url(#nl-bot)" />
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)"
+                        clip-path="url(#nl-top)" />
+                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2"
+                        stroke-linecap="round" clip-path="url(#nl-lin)" />
+                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2"
+                        stroke-linecap="round" clip-path="url(#nl-lin)" />
+                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB" />
                 </svg>
             </div>
             <span class="nav-wordmark">propo<span>z</span></span>
@@ -1449,7 +1486,8 @@
             <a href="#funcionalidades">Funcionalidades</a>
             <a href="#precos">Preços</a>
         </div>
-        <button class="nav-cta" id="nav-cta" onclick="openModal()" aria-label="Criar conta grátis">Começar grátis</button>
+        <button class="nav-cta" id="nav-cta" onclick="openModal()" aria-label="Criar conta grátis">Começar
+            grátis</button>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -1483,13 +1521,16 @@
 
         <div class="hero-actions anim-fade-up d3">
             <button class="btn-primary-lg" onclick="openModal()" aria-label="Criar conta grátis">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true" focusable="false">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+                    aria-hidden="true" focusable="false">
                     <line x1="12" y1="5" x2="12" y2="19" />
                     <line x1="5" y1="12" x2="19" y2="12" />
                 </svg>
                 Criar conta grátis
             </button>
-            <button class="btn-ghost-lg" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})" aria-label="Ver como funciona">Ver como funciona</button>
+            <button class="btn-ghost-lg"
+                onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})"
+                aria-label="Ver como funciona">Ver como funciona</button>
         </div>
 
         <p class="hero-trust anim-fade-up d4">
@@ -1539,19 +1580,30 @@
                     <div class="ph-header-top">
                         <div class="ph-logo-row">
                             <div class="ph-logo-icon">
-                                <svg width="14" height="14" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
+                                <svg width="14" height="14" viewBox="0 0 56 56" fill="none" aria-hidden="true"
+                                    focusable="false">
                                     <defs>
-                                        <clipPath id="ph-bot"><polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23"/></clipPath>
-                                        <clipPath id="ph-top"><polygon points="20,6 48,6 48,23 41,23 20,29 20,6"/></clipPath>
-                                        <clipPath id="ph-lin"><polygon points="20,29 48,23 48,44 20,44"/></clipPath>
+                                        <clipPath id="ph-bot">
+                                            <polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23" />
+                                        </clipPath>
+                                        <clipPath id="ph-top">
+                                            <polygon points="20,6 48,6 48,23 41,23 20,29 20,6" />
+                                        </clipPath>
+                                        <clipPath id="ph-lin">
+                                            <polygon points="20,29 48,23 48,44 20,44" />
+                                        </clipPath>
                                     </defs>
-                                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
-                                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)"/>
-                                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ph-bot)"/>
-                                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ph-top)"/>
-                                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ph-lin)"/>
-                                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ph-lin)"/>
-                                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB"/>
+                                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)" />
+                                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)" />
+                                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)"
+                                        clip-path="url(#ph-bot)" />
+                                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)"
+                                        clip-path="url(#ph-top)" />
+                                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2"
+                                        stroke-linecap="round" clip-path="url(#ph-lin)" />
+                                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2"
+                                        stroke-linecap="round" clip-path="url(#ph-lin)" />
+                                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB" />
                                 </svg>
                             </div>
                             <span class="ph-logo-text">propo<span>z</span></span>
@@ -1784,27 +1836,34 @@
                     </svg>
                 </div>
                 <div class="feature-title">Painel de Performance</div>
-                <div class="feature-desc">Acompanhe seu faturamento e taxa de conversão. Dados claros para o crescimento do seu negócio.</div>
+                <div class="feature-desc">Acompanhe seu faturamento e taxa de conversão. Dados claros para o crescimento
+                    do seu negócio.</div>
                 <div class="feature-visual">
                     <div class="proposal-mini">
                         <div class="proposal-mini-head">
                             <div class="proposal-mini-icon-wrap">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
-                                    <line x1="12" y1="1" x2="12" y2="23"/>
-                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                    stroke-width="2.5">
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                                 </svg>
                             </div>
                             <div style="font-size: 14px; font-weight: 700; color: #fff;">Resumo do Mês</div>
                         </div>
                         <div class="proposal-mini-body">
-                            <div style="font-family: 'DM Sans', monospace; font-size: 26px; font-weight: 800; color: var(--green); margin-bottom: 12px; letter-spacing: -0.5px;">
+                            <div
+                                style="font-family: 'DM Sans', monospace; font-size: 26px; font-weight: 800; color: var(--green); margin-bottom: 12px; letter-spacing: -0.5px;">
                                 R$ 12.450,00
                             </div>
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <div style="flex: 1; height: 5px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden;">
-                                    <div style="width: 70%; height: 100%; background: var(--green); border-radius: 3px;"></div>
+                                <div
+                                    style="flex: 1; height: 5px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden;">
+                                    <div
+                                        style="width: 70%; height: 100%; background: var(--green); border-radius: 3px;">
+                                    </div>
                                 </div>
-                                <div style="font-size: 12px; font-weight: 500; color: var(--muted);">14 propostas aceitas</div>
+                                <div style="font-size: 12px; font-weight: 500; color: var(--muted);">14 propostas
+                                    aceitas</div>
                             </div>
                         </div>
                     </div>
@@ -1826,7 +1885,7 @@
                 <div class="feature-wide-col">
                     <div class="proposal-mini">
                         <div class="proposal-mini-head">
-                        <div class="proposal-mini-icon-wrap">
+                            <div class="proposal-mini-icon-wrap">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff"
                                     stroke-width="2">
                                     <circle cx="12" cy="12" r="3" />
@@ -1965,13 +2024,14 @@
                             <line x1="9" y1="3" x2="3" y2="9" />
                         </svg></div>Notificação em tempo real
                 </div>
-                <button class="plan-btn free-btn" onclick="openModal()" aria-label="Começar grátis">Começar grátis</button>
+                <button class="plan-btn free-btn" onclick="openModal()" aria-label="Começar grátis">Começar
+                    grátis</button>
             </div>
 
             <div class="plan-card pro">
                 <div class="plan-badge-top">⚡ Mais popular</div>
                 <div class="plan-name">Pro</div>
-                <div class="plan-price">R$ 29</div>
+                <div class="plan-price">R$ 19,90</div>
                 <div class="plan-period">/mês · cancele quando quiser</div>
                 <div class="plan-feature">
                     <div class="plan-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white"
@@ -2023,8 +2083,11 @@
         </h2>
         <p class="section-sub">Crie sua conta em 1 minuto. Sem cartão, sem burocracia.</p>
         <div class="hero-actions">
-            <button class="btn-primary-lg" onclick="openModal()" aria-label="Criar conta grátis">Criar conta grátis</button>
-            <button class="btn-ghost-lg" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})" aria-label="Ver demonstração">Ver demonstração</button>
+            <button class="btn-primary-lg" onclick="openModal()" aria-label="Criar conta grátis">Criar conta
+                grátis</button>
+            <button class="btn-ghost-lg"
+                onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})"
+                aria-label="Ver demonstração">Ver demonstração</button>
         </div>
         <p class="hero-trust" style="margin-top:20px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
@@ -2037,21 +2100,32 @@
 
     <!-- ── FOOTER ── -->
     <footer>
-        <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="nav-logo" style="text-decoration:none;">
+        <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="nav-logo"
+            style="text-decoration:none;">
             <div class="nav-icon" style="width:28px;height:28px;border-radius:8px;">
                 <svg width="16" height="16" viewBox="0 0 56 56" fill="none" aria-hidden="true" focusable="false">
                     <defs>
-                        <clipPath id="ft-bot"><polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23"/></clipPath>
-                        <clipPath id="ft-top"><polygon points="20,6 48,6 48,23 41,23 20,29 20,6"/></clipPath>
-                        <clipPath id="ft-lin"><polygon points="20,29 48,23 48,44 20,44"/></clipPath>
+                        <clipPath id="ft-bot">
+                            <polygon points="20,6 48,6 48,44 20,44 20,29 41,23 20,23" />
+                        </clipPath>
+                        <clipPath id="ft-top">
+                            <polygon points="20,6 48,6 48,23 41,23 20,29 20,6" />
+                        </clipPath>
+                        <clipPath id="ft-lin">
+                            <polygon points="20,29 48,23 48,44 20,44" />
+                        </clipPath>
                     </defs>
-                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
-                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)"/>
-                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ft-bot)"/>
-                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)" clip-path="url(#ft-top)"/>
-                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ft-lin)"/>
-                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2" stroke-linecap="round" clip-path="url(#ft-lin)"/>
-                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB"/>
+                    <rect x="7" y="14" width="26" height="32" rx="5" fill="rgba(255,255,255,0.15)" />
+                    <rect x="13" y="10" width="26" height="32" rx="5" fill="rgba(255,255,255,0.22)" />
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)"
+                        clip-path="url(#ft-bot)" />
+                    <rect x="20" y="6" width="28" height="38" rx="5" fill="rgba(255,255,255,0.9)"
+                        clip-path="url(#ft-top)" />
+                    <line x1="26" y1="31" x2="43" y2="31" stroke="rgba(26,86,219,0.3)" stroke-width="2"
+                        stroke-linecap="round" clip-path="url(#ft-lin)" />
+                    <line x1="26" y1="36" x2="38" y2="36" stroke="rgba(26,86,219,0.3)" stroke-width="2"
+                        stroke-linecap="round" clip-path="url(#ft-lin)" />
+                    <polygon points="37,3 25,27 34,27 22,53 45,22 36,22" fill="#1A56DB" />
                 </svg>
             </div>
             <span class="nav-wordmark" style="font-size:16px;">propo<span>z</span></span>
@@ -2068,13 +2142,19 @@
     <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
-            <div class="modal-badge"><div class="modal-badge-dot"></div>Acesso antecipado</div>
+            <div class="modal-badge">
+                <div class="modal-badge-dot"></div>Acesso antecipado
+            </div>
             <div class="modal-title" id="modal-title">Comece grátis hoje</div>
-            <div class="modal-sub">5 propostas por mês, sem cartão de crédito.<br>Faça upgrade quando quiser fechar mais.</div>
+            <div class="modal-sub">5 propostas por mês, sem cartão de crédito.<br>Faça upgrade quando quiser fechar
+                mais.</div>
             <form id="signup-form" onsubmit="submitModal(event)">
-                <input class="modal-input" type="text" id="modal-name" placeholder="Seu nome completo" autocomplete="name" aria-label="Nome completo" required />
-                <input class="modal-input" type="email" id="modal-email" placeholder="Seu e-mail profissional" autocomplete="email" aria-label="E-mail profissional" required />
-                <input class="modal-input" type="tel" id="modal-phone" placeholder="WhatsApp (com DDD)" autocomplete="tel" aria-label="WhatsApp com DDD" required />
+                <input class="modal-input" type="text" id="modal-name" placeholder="Seu nome completo"
+                    autocomplete="name" aria-label="Nome completo" required />
+                <input class="modal-input" type="email" id="modal-email" placeholder="Seu e-mail profissional"
+                    autocomplete="email" aria-label="E-mail profissional" required />
+                <input class="modal-input" type="tel" id="modal-phone" placeholder="WhatsApp (com DDD)"
+                    autocomplete="tel" aria-label="WhatsApp com DDD" required />
                 <button type="submit" class="modal-submit" id="modal-submit">Criar conta grátis →</button>
             </form>
             <div class="modal-note">✓ Grátis para sempre · Sem cartão · Cancele quando quiser</div>
@@ -2132,7 +2212,7 @@
             document.body.style.overflow = '';
         }
 
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+        document.getElementById('modal-overlay').addEventListener('click', function (e) {
             if (e.target === this) closeModal();
         });
 
@@ -2146,10 +2226,10 @@
             const name = document.getElementById('modal-name').value.trim();
             const email = document.getElementById('modal-email').value.trim();
             const phone = document.getElementById('modal-phone').value.trim();
-            
+
             const btn = document.getElementById('modal-submit');
             const originalText = btn.textContent;
-            
+
             btn.textContent = 'Enviando...';
             btn.style.opacity = '0.8';
             btn.disabled = true;
@@ -2161,14 +2241,14 @@
                 //     headers: { 'Content-Type': 'application/json' },
                 //     body: JSON.stringify({ name, email, phone })
                 // });
-                
+
                 // Simulação de Loading real da rede:
                 await new Promise(resolve => setTimeout(resolve, 800));
 
                 btn.textContent = '✓ Cadastro realizado!';
                 btn.style.background = 'var(--green)';
                 btn.style.opacity = '1';
-                
+
                 setTimeout(() => {
                     closeModal();
                     form.reset(); // Limpa os campos
