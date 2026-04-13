@@ -1040,72 +1040,6 @@
             color: #fff;
         }
 
-        /* ── SOCIAL PROOF ── */
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-top: 56px;
-        }
-
-        .testimonial {
-            background: var(--navy2);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 28px;
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, .85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .t-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .t-name {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .t-role {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 2px;
-        }
-
-        .stars {
-            display: flex;
-            gap: 2px;
-            margin-bottom: 16px;
-        }
-
-        .star {
-            width: 14px;
-            height: 14px;
-            background: #F59E0B;
-            border-radius: 2px;
-        }
-
         /* ── CTA FINAL ── */
         .cta-section {
             text-align: center;
@@ -1450,7 +1384,6 @@
 
 <body>
 
-    <!-- ── NAV ── -->
     <nav id="nav">
         <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="nav-logo">
             <div class="nav-icon">
@@ -1493,7 +1426,6 @@
         </button>
     </nav>
 
-    <!-- ── MOBILE MENU ── -->
     <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
         <a href="#como-funciona">Como funciona</a>
         <a href="#funcionalidades">Funcionalidades</a>
@@ -1501,7 +1433,6 @@
         <button class="mobile-cta" onclick="openModal()" aria-label="Criar conta grátis">Criar conta grátis</button>
     </div>
 
-    <!-- ── HERO ── -->
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-grid"></div>
@@ -1530,7 +1461,7 @@
             </button>
             <button class="btn-ghost-lg"
                 onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})"
-                aria-label="Ver como funciona">Ver como funciona</button>
+                aria-label="Ver demonstração">Ver demonstração</button>
         </div>
 
         <p class="hero-trust anim-fade-up d4">
@@ -1668,7 +1599,6 @@
         </div>
     </div>
 
-    <!-- ── TICKER ── -->
     <div class="ticker">
         <div class="ticker-inner">
             <div class="ticker-item">
@@ -1710,7 +1640,6 @@
         </div>
     </div>
 
-    <!-- ── COMO FUNCIONA ── -->
     <section id="como-funciona">
         <div class="reveal">
             <div class="section-tag">Como funciona</div>
@@ -1769,7 +1698,6 @@
         </div>
     </section>
 
-    <!-- ── FUNCIONALIDADES ── -->
     <section id="funcionalidades" class="section--no-top">
         <div class="reveal">
             <div class="section-tag">Funcionalidades</div>
@@ -1914,71 +1842,34 @@
         </div>
     </section>
 
-    <!-- ── DEPOIMENTOS ── -->
     <section class="section--no-top">
-        <div class="reveal">
-            <div class="section-tag">Depoimentos</div>
-            <h2 class="section-title">Técnicos que fecham mais</h2>
-        </div>
-        <div class="testimonials reveal">
-            <div class="testimonial">
-                <div class="stars">
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
+        <div class="reveal" style="text-align:center; max-width: 780px; margin: 0 auto;">
+            <div class="section-tag">Acesso antecipado</div>
+            <h2 class="section-title">Feito por um técnico, para técnicos</h2>
+            <p class="section-sub" style="margin: 0 auto 40px;">O propoz nasceu da dor real de perder serviços por mandar orçamento bagunçado no WhatsApp. Estamos em acesso antecipado — seja um dos primeiros a usar e ajudar a moldar o produto.</p>
+            
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+                <div style="flex: 1; padding: 28px 24px; background: var(--navy2); border: 1px solid var(--border); border-radius: 16px; min-width: 200px;">
+                    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 800; color: var(--blue-lt); letter-spacing: -1px; margin-bottom: 6px;">2 min</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.5;">para criar uma proposta</div>
                 </div>
-                <div class="testimonial-text">"Antes eu mandava orçamento por WhatsApp mesmo, uma bagunça. Agora mando o
-                    link e já sei na hora que o cliente abriu. Fechei 4 dos últimos 5."</div>
-                <div class="testimonial-author">
-                    <div class="t-avatar">RS</div>
-                    <div>
-                        <div class="t-name">Rafael S.</div>
-                        <div class="t-role">Técnico CFTV · São Paulo</div>
-                    </div>
+                <div style="flex: 1; padding: 28px 24px; background: var(--navy2); border: 1px solid var(--border); border-radius: 16px; min-width: 200px;">
+                    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 800; color: var(--blue-lt); letter-spacing: -1px; margin-bottom: 6px;">100%</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.5;">mobile — funciona no celular</div>
+                </div>
+                <div style="flex: 1; padding: 28px 24px; background: var(--navy2); border: 1px solid var(--border); border-radius: 16px; min-width: 200px;">
+                    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 800; color: var(--blue-lt); letter-spacing: -1px; margin-bottom: 6px;">R$ 0</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.5;">para começar, sem cartão</div>
                 </div>
             </div>
-            <div class="testimonial">
-                <div class="stars">
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                </div>
-                <div class="testimonial-text">"O cliente me disse que escolheu a minha empresa porque a proposta parecia
-                    mais profissional. Nunca imaginei que isso faria tanta diferença."</div>
-                <div class="testimonial-author">
-                    <div class="t-avatar" style="background:#0F6E56;">FM</div>
-                    <div>
-                        <div class="t-name">Fábio M.</div>
-                        <div class="t-role">Redes e infraestrutura · Curitiba</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial">
-                <div class="stars">
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                </div>
-                <div class="testimonial-text">"Economizo pelo menos 1 hora por dia que gastava fazendo proposta no Word.
-                    Agora faço em 2 minutos e ainda sei quando o cliente leu."</div>
-                <div class="testimonial-author">
-                    <div class="t-avatar" style="background:#7C3AED;">CL</div>
-                    <div>
-                        <div class="t-name">Carlos L.</div>
-                        <div class="t-role">Automação residencial · BH</div>
-                    </div>
-                </div>
+            
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); border-radius: 100px; padding: 10px 20px; font-size: 13px; color: var(--muted);">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0;"></div>
+                <span>Acesso antecipado · <strong style="color:#fff; font-weight:600;">Vagas limitadas</strong> para os primeiros técnicos</span>
             </div>
         </div>
     </section>
 
-    <!-- ── PREÇOS ── -->
     <section id="precos" class="section--no-top">
         <div class="reveal" style="text-align:center;">
             <div class="section-tag">Preços</div>
@@ -2024,8 +1915,6 @@
                             <line x1="9" y1="3" x2="3" y2="9" />
                         </svg></div>Notificação em tempo real
                 </div>
-                <button class="plan-btn free-btn" onclick="openModal()" aria-label="Começar grátis">Começar
-                    grátis</button>
             </div>
 
             <div class="plan-card pro">
@@ -2069,19 +1958,23 @@
                             <polyline points="2,6 5,9 10,3" />
                         </svg></div>Follow-up sugerido
                 </div>
-                <button class="plan-btn pro-btn" onclick="openModal()" aria-label="Assinar Pro">Assinar Pro</button>
             </div>
 
         </div>
+
+        <div class="reveal" style="text-align: center; margin-top: 40px;">
+            <button class="btn-primary-lg" style="padding: 18px 48px; font-size: 18px;" onclick="openModal()" aria-label="Cadastrar agora">
+                Cadastrar agora
+            </button>
+        </div>
     </section>
 
-    <!-- ── CTA FINAL ── -->
     <div class="cta-section reveal">
         <div class="section-tag">Comece hoje</div>
         <h2 class="section-title section-title--lg">
             Pronto para fechar<br>o próximo negócio?
         </h2>
-        <p class="section-sub">Crie sua conta em 1 minuto. Sem cartão, sem burocracia.</p>
+        <p class="section-sub">Crie sua conta em 1 minuto. Sem cartão, sem burocracia. O plano Pro custa apenas R$ 19,90/mês.</p>
         <div class="hero-actions">
             <button class="btn-primary-lg" onclick="openModal()" aria-label="Criar conta grátis">Criar conta
                 grátis</button>
@@ -2090,15 +1983,11 @@
                 aria-label="Ver demonstração">Ver demonstração</button>
         </div>
         <p class="hero-trust" style="margin-top:20px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
-                <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
-            </svg>
-            Junte-se a centenas de técnicos que já fecham mais com o <span>propoz</span>
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; margin-right: 6px;"></div>
+            <span>Acesso antecipado · Vagas limitadas para os primeiros técnicos</span>
         </p>
     </div>
 
-    <!-- ── FOOTER ── -->
     <footer>
         <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="nav-logo"
             style="text-decoration:none;">
@@ -2138,7 +2027,6 @@
         </div>
     </footer>
 
-    <!-- ── MODAL SIGNUP ── -->
     <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
@@ -2146,8 +2034,7 @@
                 <div class="modal-badge-dot"></div>Acesso antecipado
             </div>
             <div class="modal-title" id="modal-title">Comece grátis hoje</div>
-            <div class="modal-sub">5 propostas por mês, sem cartão de crédito.<br>Faça upgrade quando quiser fechar
-                mais.</div>
+            <div class="modal-sub">5 propostas por mês grátis, sem cartão de crédito.<br>Faça upgrade para o Pro por apenas R$ 19,90/mês quando quiser fechar mais.</div>
             <form id="signup-form" onsubmit="submitModal(event)">
                 <input class="modal-input" type="text" id="modal-name" placeholder="Seu nome completo"
                     autocomplete="name" aria-label="Nome completo" required />
@@ -2235,13 +2122,6 @@
             btn.disabled = true;
 
             try {
-                // TODO: Para integrar de verdade no Vercel estático, descomente aqui e coloque seu webhook
-                // await fetch('https://formspree.io/f/seu-id', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ name, email, phone })
-                // });
-
                 // Simulação de Loading real da rede:
                 await new Promise(resolve => setTimeout(resolve, 800));
 
